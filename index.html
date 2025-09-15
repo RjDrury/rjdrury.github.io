@@ -14,7 +14,7 @@
           <div class="hero-text">
             <h1><span class="name-highlight">Rob Drury</span></h1>
             <p class="hero-subtitle">
-              Senior Fullstack Engineer | AI & Warehouse Management Systems
+              Senior Fullstack Engineer | AI & Logistics
             </p>
             <p class="social-description">
               From Montreal to Berlin and beyond - building scalable solutions
@@ -155,6 +155,18 @@
               </div>
 
               <div class="timeline-item above">
+                <div class="tooltip-title">Graduated University</div>
+                <div class="company-logo">
+                  <img
+                    src="./images/concordia.png"
+                    alt="Concordia University"
+                    class="company-logo-img"
+                  />
+                </div>
+                <div class="year-label">Apr 2021</div>
+              </div>
+
+              <div class="timeline-item below">
                 <div class="tooltip-title">Big Bang R&D Manager</div>
                 <div class="company-logo">
                   <img
@@ -166,7 +178,7 @@
                 <div class="year-label">May 2021</div>
               </div>
 
-              <div class="timeline-item below">
+              <div class="timeline-item above">
                 <div class="tooltip-title">Vention</div>
                 <div class="company-logo">
                   <img
@@ -178,7 +190,7 @@
                 <div class="year-label">Mar 2022</div>
               </div>
 
-              <div class="timeline-item above">
+              <div class="timeline-item below">
                 <div class="tooltip-title">SymphonyAI</div>
                 <div class="company-logo current">
                   <img
@@ -187,8 +199,11 @@
                     class="company-logo-img"
                   />
                 </div>
-                <div class="year-label">Present</div>
+                <div class="year-label">Sept 2025</div>
               </div>
+            </div>
+            <div class="timeline-hint">
+              <p>Click on work experience items for more details</p>
             </div>
           </div>
         </div>
@@ -399,7 +414,6 @@
         align-items: center;
         z-index: 2;
         cursor: pointer;
-        transition: all 0.3s ease;
       }
 
       .timeline-item.above {
@@ -409,7 +423,7 @@
 
       .timeline-item.below {
         align-self: flex-end;
-        transform: translateY(55px);
+        transform: translateY(58px);
       }
 
       .timeline-item.above .year-label {
@@ -447,14 +461,6 @@
         visibility: visible;
       }
 
-      .timeline-item.above:hover {
-        transform: translateY(-50px);
-      }
-
-      .timeline-item.below:hover {
-        transform: translateY(60px);
-      }
-
       .company-logo {
         width: 45px;
         height: 45px;
@@ -465,7 +471,6 @@
         justify-content: center;
         box-shadow: 0 3px 8px rgba(66, 153, 225, 0.2);
         color: #4299e1;
-        transition: all 0.3s ease;
         border: 2px solid #4299e1;
         margin-bottom: 8px;
         position: relative;
@@ -537,6 +542,19 @@
         font-weight: 600;
         color: #4a5568;
         text-align: center;
+      }
+
+      .timeline-hint {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .timeline-hint p {
+        font-size: 0.75rem;
+        color: #718096;
+        font-style: italic;
+        margin: 0;
+        opacity: 0.8;
       }
 
       .social-links {
@@ -991,6 +1009,20 @@
           techStack:
             "Java(Spring), Javascript, SuiteScript, Google Script, AWS(EC2, Beanstalk)",
         },
+        "concordia-graduation": {
+          title: "Concordia University | Graduation",
+          duration:
+            "April 2021 | Bachelor of Engineering in Software Engineering",
+          logo: "./images/concordia.png",
+          bullets: [
+            "Successfully completed Bachelor of Engineering in Software Engineering",
+            "Graduated with comprehensive knowledge in software development, algorithms, and system design",
+            "Achieved academic milestone after 6 years of study while gaining practical experience through internships",
+            "Applied theoretical knowledge gained through coursework to real-world projects during various internships",
+          ],
+          techStack:
+            "Software Engineering Degree - Foundation in Computer Science and Engineering Principles",
+        },
         "bigbang-manager": {
           title: "Big Bang 360 | R&D Manager",
           duration: "May 2021 - Feb 2022 | Montreal, QC",
@@ -1021,7 +1053,7 @@
         },
         symphonyai: {
           title: "SymphonyAI | Senior Fullstack Engineer",
-          duration: "Present | Remote",
+          duration: "Sept 2025 - Present | Remote",
           logo: "./images/symphony-ai.png",
           bullets: ["Current position in AI technology sector"],
           techStack: "AI/ML Technologies, Advanced Software Development",
@@ -1040,15 +1072,23 @@
           "nuance",
           "matrox",
           "bigbang-intern",
+          "concordia-graduation",
           "bigbang-manager",
           "vention",
           "symphonyai",
         ];
 
         timelineItems.forEach((item, index) => {
+          const jobKey = jobKeys[index];
+
+          // Don't make school-related items clickable
+          if (jobKey === "concordia" || jobKey === "concordia-graduation") {
+            item.style.cursor = "default";
+            return;
+          }
+
           item.style.cursor = "pointer";
           item.addEventListener("click", function () {
-            const jobKey = jobKeys[index];
             const job = jobData[jobKey];
 
             if (job) {
